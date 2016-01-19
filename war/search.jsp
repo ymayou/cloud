@@ -4,22 +4,22 @@
 <t:genericpage>
 
     <jsp:attribute name="header">
-      	<div class=" col-md-10 col-sm-10 col-xs-10 ">
-            <form class="navbar-form navbar-left"  style="width:100%" role="search">
-                <button type="submit" class="btn btn-default">Search</button>
-                <div class="form-group"  style="width:90%">
-                    <input type="text"  style="width:100%" class="form-control" placeholder="Search">
-                </div>
-          </form>
-        </div>
-          
-        <div class=" col-md-2 col-sm-2 col-xs-2 ">
-            <form class="navbar-form navbar-left"  style="width:100%" role="search">
-                <button type="submit" class="btn btn-primary">G</button>
-                <button type="submit" class="btn btn-success">Y</button>
-                <button type="submit" class="btn btn-warning">O</button>
-          </form>
-        </div>
+      	<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log("Name: " + profile.getName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
+      	
     </jsp:attribute>
     
     
