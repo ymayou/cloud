@@ -35,7 +35,7 @@ public class RssFeedServlet extends HttpServlet {
 				url.openStream()));
 
 		// Get the parsed result
-		result = parseFeed(result, reader);
+		result = parseFeed(reader);
 
 		// Return empty JSON
 		resp.setContentType("application/json");
@@ -44,7 +44,15 @@ public class RssFeedServlet extends HttpServlet {
 		return;
 	}
 
-	private JSONArray parseFeed(JSONArray jsonArray, Reader reader) {
+	/**
+	 * Parse an XML RSS feed and return the two first elements
+	 *
+	 * @param reader Stream reader for the feed
+	 * @return a JSONArray
+	 */
+	private JSONArray parseFeed(Reader reader) {
+		JSONArray jsonArray = new JSONArray();
+		
 		// Parse the feed
 		String tagContent = null;
 		XMLInputFactory factory = XMLInputFactory.newInstance();
