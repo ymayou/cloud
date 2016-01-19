@@ -36,7 +36,7 @@ public class SearchServlet extends HttpServlet {
 		// Get request parameters
 		String keywords = req.getParameter(KEYWORDS_PARAMETER);
 		
-		// Return empty JSON if no parameters
+		// Return empty JSON if no parameter
 		if (keywords == null || keywords.length() == 0) {
 			JSONArray result = new JSONArray();
 			resp.setContentType("application/json");
