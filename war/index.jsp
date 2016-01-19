@@ -22,7 +22,7 @@
 
           <div class="inner cover">
             <h1 class="cover-heading">Personal trainer</h1>
-            <p class="lead">Bienvenue sur notre application d'entrainement personel. Have fun :)</p>
+            <p class="lead">${descriptionMessage}</p>
             <p class="lead">
               <a href="search.jsp" class="btn btn-lg btn-default">Connexion</a>
             </p>
