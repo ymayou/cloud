@@ -5,7 +5,6 @@ $(document).ready(function() {
 	$(searchButton).click(function() {
 		// Get the token
 		var token = getCookie("token_user");
-		console.log(token);
 		
 		// Get the search request
 		var keywords = $(searchInput).val();

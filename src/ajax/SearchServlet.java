@@ -28,6 +28,7 @@ public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String KEYWORDS_PARAMETER = "keywords";
+	private static final String TOKEN_PARAMETER = "token";
 	private static final String SEPARATOR = ",";
 
 	@Override
@@ -35,6 +36,18 @@ public class SearchServlet extends HttpServlet {
 
 		// Get request parameters
 		String keywords = req.getParameter(KEYWORDS_PARAMETER);
+		// Get request parameters
+		String token = req.getParameter(TOKEN_PARAMETER);
+		
+		if (!utils.GoogleUtils.isConnectionValid(token)) {
+			JSONArray result = new JSONArray();
+			result.put("authentication error");
+			resp.setContentType("application/json");
+			resp.getWriter().write(result.toString());
+			resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			resp.getWriter().close();
+			return;	
+		}
 		
 		// Return empty JSON if no parameter
 		if (keywords == null || keywords.length() == 0) {

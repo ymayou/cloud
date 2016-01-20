@@ -46,6 +46,7 @@ public class RssFeedServlet extends HttpServlet {
 			
 		} else {
 			result.put("authentication error");
+			resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		}
 
 		// Return JSON
