@@ -9,18 +9,16 @@ $(document).ready(function() {
 		// Get the search request
 		var keywords = $(searchInput).val();
 		if (keywords.length > 0) {
-
+			
 			// Build the request parameter
 			var array = keywords.split(" ").filter(Boolean);
 			keywords = array.join(",");
-			console.log(array);
 
 			// Make the request
 			$.get("search", {
 				keywords : keywords,
 				token: token
 			}, function(data, status) {
-				console.log(data);
 				
 				// Display the result section
 				var result = $("#searchResults");
@@ -30,8 +28,7 @@ $(document).ready(function() {
 				training.empty();
 				exercises.empty();
 				for (var i = 0; i < data.length; i++) {
-					console.log(data[i]);
-					console.log(data[i].values.length)
+
 					for (var j = 0; j < data[i].values.length; j++) {
 						var element = data[i].values[j];
 						var link = "<a href=\"/rss\">" + element.title + "</a>";

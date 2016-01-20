@@ -22,7 +22,7 @@ public class RssFeedServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String RSS_FEED = "http://feeds.feedburner.com/irunfar/wAAy";
+	private static final String RSS_FEED = "https://feeds.feedburner.com/irunfar/wAAy?format=xml";
 	private static final String TITLE = "title";
 	private static final String DESCRIPTION = "description";
 	private static final String TOKEN_PARAMETER = "token";
