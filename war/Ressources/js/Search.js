@@ -15,7 +15,7 @@ $(document).ready(function() {
 			keywords = array.join(",");
 
 			// Make the request
-			$.get("search", {
+			$.get("search/titles", {
 				keywords : keywords,
 				token: token
 			}, function(data, status) {
