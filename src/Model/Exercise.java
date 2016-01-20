@@ -2,7 +2,9 @@ package Model;
 
 import com.google.appengine.api.datastore.Key;
 
-public class Exercise {
+import java.io.Serializable;
+
+public class Exercise implements Serializable{
 	
 	public static final String DATASTORE_LABEL = "EXERCISE";
 	public static final String TITLE_LABEL = "title";
@@ -57,4 +59,6 @@ public class Exercise {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+
 }

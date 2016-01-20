@@ -55,6 +55,10 @@ $(document).ready(function(){
         });
     });
 
+    $("#btCancel").click(function(){
+       window.location = window.location.origin;
+    });
+
     // Form validation
     $("#addPlan").validate({
        rules: {
@@ -97,7 +101,6 @@ $(document).ready(function(){
         allTime[2] = parseInt(allTime[2])+ sec;
         allTime[1] = parseInt(allTime[1])+ minute;
         allTime[0] = parseInt(allTime[0])+ hour;
-
         if (allTime[2] >= 60)
         {
             allTime[2] = allTime[2] - 60;
@@ -108,7 +111,6 @@ $(document).ready(function(){
             allTime[1] = allTime[1] - 60;
             allTime[0] = allTime[0] + 1;
         }
-
         console.log(allTime);
         return allTime[0] + ":" + allTime[1] + ":" + allTime[2];
     }

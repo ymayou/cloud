@@ -7,15 +7,21 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.labs.repackaged.org.json.JSONArray;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
+import com.google.appengine.repackaged.com.google.api.client.util.Base64;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by You on 20/01/2016.
@@ -26,7 +32,6 @@ public class AddTrainingServlet extends HttpServlet {
 
         switch (cmd) {
             case "addPlan":
-                DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
                 String data = request.getParameter("data");
                 Training train = new Training();
                 try {
@@ -38,13 +43,7 @@ public class AddTrainingServlet extends HttpServlet {
                     train.setDomain(json.getString("domain"));
                     train.setDuration(json.getString("time"));
 
-                    Entity training = new Entity(Training.DATASTORE_LABEL);
-                    training.setProperty(Training.TITLE_LABEL, train.getTitle());
-                    training.setProperty(Training.DESCRIPTION_LABEL, train.getDescription());
-                    training.setProperty(Training.DOMAIN_LABEL, train.getDomain());
-                    training.setProperty(Training.DURATION_LABEL, train.getDuration());
-                    Key key = training.getKey();
-                    datastore.put(training);
+                    List<Exercise> exerciseList = new ArrayList<>();
 
                     for (int tmp = 0; tmp < exercises.length(); tmp++)
                     {
@@ -55,14 +54,35 @@ public class AddTrainingServlet extends HttpServlet {
                         exo.setDescription(exoJson.getString(1));
                         exo.setDuration(exoJson.getString(2));
 
-                        Entity exercise = new Entity(Exercise.DATASTORE_LABEL);
-                        new Entity(Exercise.DATASTORE_LABEL, key);
-                        exercise.setProperty(Exercise.TITLE_LABEL, exo.getTitle());
-                        exercise.setProperty(Exercise.DESCRIPTION_LABEL, exo.getDescription());
-                        exercise.setProperty(Exercise.DURATION_LABEL, exo.getDuration());
-                        datastore.put(exercise);
-
+                        exerciseList.add(exo);
                     }
+
+                    byte[] bytes = null;
+                    try{
+                        ByteArrayOutputStream exParam = new ByteArrayOutputStream() ;
+                        ObjectOutputStream out = new ObjectOutputStream(exParam);
+                        out.writeObject(exerciseList);
+                        bytes = exParam.toByteArray();
+                        out.close();
+                        exParam.close();
+                    }
+                    catch (IOException e)
+                    {
+                        System.out.println(e.toString());
+                        e.printStackTrace();
+                    }
+
+                    Queue queue = QueueFactory.getDefaultQueue();
+
+                    // Insert task
+                    TaskOptions task = TaskOptions.Builder.withUrl("/worker")
+                            .param(Training.TITLE_LABEL, train.getTitle())
+                            .param(Training.DESCRIPTION_LABEL, train.getDescription())
+                            .param(Training.DOMAIN_LABEL, train.getDomain())
+                            .param(Training.DURATION_LABEL, train.getDuration())
+                            .param(Training.EXERCISES_LABEL, Base64.encodeBase64(bytes));
+                    queue.add(task);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
