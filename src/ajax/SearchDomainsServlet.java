@@ -101,15 +101,6 @@ public class SearchDomainsServlet extends HttpServlet {
 
 		// Get query result
 		PreparedQuery pqTrainings = datastore.prepare(queryTrainings);
-		
-		// TODO : remove
-		try {
-			jsonObject.put(Training.TITLE_LABEL, "title");
-			jsonObject.put(Training.DURATION_LABEL, "duration");
-			jsonArray.put(jsonObject);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
 
 		for (Entity element : pqTrainings.asIterable()) {
 			String title = (String) element.getProperty(Training.TITLE_LABEL);
