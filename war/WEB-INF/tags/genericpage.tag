@@ -20,36 +20,53 @@
   </head>
   <body>
   <!-- ------------------------------------------- HEADER ZONE ------------------------------------------- -->
-      <nav class="navbar navbar-inverse" role="navigation">
-      	<div id="pageheader">
-      	<%
-        Cookie[] cookies = request.getCookies();
-        boolean foundCookie = false;
-        
-        if (cookies != null && cookies.length > 0) {
-
-	        for(int i = 0; i < cookies.length; i++) { 
-	            Cookie c = cookies[i];
-	            if (c.getName().equals("name_user")) {
-	                foundCookie = true;
-	            }
-	        }  
-        }
+  
+  <nav class="navbar navbar-inverse" role="navigation">
+  
+     <div class=" col-md-10 col-sm-10 col-xs-10 ">
+        <jsp:invoke fragment="header"/>
+     </div>
+       
+     <div class=" col-md-2 col-sm-2 col-xs-2 ">
+         <%
+	        Cookie[] cookies = request.getCookies();
+	        boolean foundCookie = false;
+	        String nameUser = "";
+	        String emailUser = "";
+	        
+	        if (cookies != null && cookies.length > 0) {
 	
-        if (foundCookie) {
-    %>
-    	<a href="#" onclick="signOut();">Sign out</a>
-    	<div id="btnConnect" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="display: none;"></div>
-    <%
-        } else {
-    %>
-    	<div id="btnConnect" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <%
-        }
-    %> 
-	      <jsp:invoke fragment="header"/>
-	    </div>
-      </nav>
+		        for(int i = 0; i < cookies.length; i++) { 
+		            Cookie c = cookies[i];
+		            if (c.getName().equals("name_user")) {
+		                foundCookie = true;
+		                nameUser = c.getValue();
+		            }
+		            if (c.getName().equals("email_user")) {
+		            	emailUser = c.getValue();
+		            }
+		        }  
+	        }
+		
+	        if (foundCookie) {
+	    %>
+	    	<a class="btn btn-default" href="#" onclick="signOut();">Sign out</a>
+	    	<div class="alert alert-success" role="alert">
+	    		<%= nameUser.toString() %>
+	    		<%= emailUser.toString() %>
+			</div>
+	    	<div id="btnConnect" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="display: none;"></div>
+	    <%
+	        } else {
+	    %>
+	    	<div id="btnConnect" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+	    	
+	    <%
+	        }
+	    %> 
+     </div>
+   </nav>
+  
       <!-- ------------------------------------------- HEADER ZONE END ------------------------------------------- -->
   
     <div id="body">

@@ -22,7 +22,7 @@ function onSignIn(googleUser) {
 		  var dtExpire = new Date();
 		   dtExpire.setTime(dtExpire.getTime() + 3600 * 1000);
 		   setCookie('token_user', id_token, dtExpire, '/' );
-		   setCookie('name_user', obj.name, dtExpire, '/' );
+		   setCookie('name_user', obj.name.replace("%20"," "), dtExpire, '/' );
 		   setCookie('email_user', obj.email, dtExpire, '/' );
 		   window.location.reload();
 		};
