@@ -25,14 +25,17 @@
       	<%
         Cookie[] cookies = request.getCookies();
         boolean foundCookie = false;
+        
+        if (cookies != null && cookies.length > 0) {
 
-        for(int i = 0; i < cookies.length; i++) { 
-            Cookie c = cookies[i];
-            if (c.getName().equals("name_user")) {
-                foundCookie = true;
-            }
-        }  
-
+	        for(int i = 0; i < cookies.length; i++) { 
+	            Cookie c = cookies[i];
+	            if (c.getName().equals("name_user")) {
+	                foundCookie = true;
+	            }
+	        }  
+        }
+	
         if (foundCookie) {
     %>
     	<a href="#" onclick="signOut();">Sign out</a>

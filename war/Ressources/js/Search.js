@@ -3,7 +3,10 @@ var searchInput = "#searchInput";
 
 $(document).ready(function() {
 	$(searchButton).click(function() {
-
+		// Get the token
+		var token = getCookie("token_user");
+		console.log(token);
+		
 		// Get the search request
 		var keywords = $(searchInput).val();
 		if (keywords.length > 0) {
@@ -15,7 +18,8 @@ $(document).ready(function() {
 
 			// Make the request
 			$.get("search", {
-				keywords : keywords
+				keywords : keywords,
+				token: token
 			}, function(data, status) {
 				console.log(data);
 				
@@ -46,16 +50,24 @@ $(document).ready(function() {
 		}
 		
 		// Look for RSS feed
-		$.get("rss", {}, function(data, status) {		
+		$.get("rss", {
+			token: token
+		}, function(data, status) {	
 			// Display the news section
 			var news = $("#newsResults");
 			news.removeClass("hidden");
 			news.empty();
 			for (var i = 0; i < data.length; i++) {
-				news.append("<h3>" + data[i].title + "</h3>");
-				news.append("<p>" + data[i].description + "</p>");
+				if (data[i].title != null) news.append("<h3>" + data[i].title + "</h3>");
+				if (data[i].description != null) news.append("<p>" + data[i].description + "</p>");
 			}
 
 		});
 	});
 });
+
+function getCookie(name) {
+  var re = new RegExp(name + "=([^;]+)");
+  var value = re.exec(document.cookie);
+  return (value != null) ? unescape(value[1]) : null;
+}
