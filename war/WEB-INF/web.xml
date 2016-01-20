@@ -9,7 +9,16 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>search_servlet</servlet-name>
-		<url-pattern>/search</url-pattern>
+		<url-pattern>/search/titles</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>search_domain_servlet</servlet-name>
+		<servlet-class>ajax.SearchDomainsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>search_domain_servlet</servlet-name>
+		<url-pattern>/search/domain</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -29,7 +38,7 @@
 		<servlet-name>IndexServlet</servlet-name>
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>TestConnectionServlet</servlet-name>
 		<servlet-class>ajax.TestConnectionServlet</servlet-class>

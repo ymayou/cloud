@@ -22,6 +22,31 @@
   <!-- ------------------------------------------- HEADER ZONE ------------------------------------------- -->
       <nav class="navbar navbar-inverse" role="navigation">
       	<div id="pageheader">
+      	<%
+        Cookie[] cookies = request.getCookies();
+        boolean foundCookie = false;
+        
+        if (cookies != null && cookies.length > 0) {
+
+	        for(int i = 0; i < cookies.length; i++) { 
+	            Cookie c = cookies[i];
+	            if (c.getName().equals("name_user")) {
+	                foundCookie = true;
+	            }
+	        }  
+        }
+	
+        if (foundCookie) {
+    %>
+    	<a href="#" onclick="signOut();">Sign out</a>
+    	<div id="btnConnect" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="display: none;"></div>
+    <%
+        } else {
+    %>
+    	<div id="btnConnect" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <%
+        }
+    %> 
 	      <jsp:invoke fragment="header"/>
 	    </div>
       </nav>

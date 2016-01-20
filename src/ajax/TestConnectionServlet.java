@@ -22,28 +22,17 @@ public class TestConnectionServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		
-		/*Cookie[] cookies = req.getCookies();
-		for(Cookie cookie : cookies){
-			System.out.println(cookie.getName() + " - " + cookie.getValue());
-		}
-		
-	}*/
-		System.out.println(req.getParameter(TOKEN_LABEL));
-		
 		String token = req.getParameter(TOKEN_LABEL);
 		String urlToken;
 		urlToken = URL_TOKEN + token;
 		
 		URL url = new URL(urlToken);
-		System.out.println(url.toString());
 		BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
 		
 		StringBuilder sb = new StringBuilder();
 		String line;
 		while((line = reader.readLine()) != null){
 			sb.append(line);
-			System.out.println(line);
 		}
 		reader.close();
 		try {

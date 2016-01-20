@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,23 +22,34 @@ public class RssFeedServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String RSS_FEED = "http://feeds.feedburner.com/irunfar/wAAy";
+	private static final String RSS_FEED = "https://feeds.feedburner.com/irunfar/wAAy?format=xml";
 	private static final String TITLE = "title";
 	private static final String DESCRIPTION = "description";
+	private static final String TOKEN_PARAMETER = "token";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		JSONArray result = new JSONArray();
+		
+		// Get request parameters
+		String token = req.getParameter(TOKEN_PARAMETER);
+		
+		if (utils.GoogleUtils.isConnectionValid(token)) {
 
-		// Get the RSS feed
-		URL url = new URL(RSS_FEED);
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				url.openStream()));
+			// Get the RSS feed
+			URL url = new URL(RSS_FEED);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					url.openStream()));
+	
+			// Get the parsed result
+			result = parseFeed(reader);
+			
+		} else {
+			result.put("authentication error");
+			resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
+		}
 
-		// Get the parsed result
-		result = parseFeed(reader);
-
-		// Return empty JSON
+		// Return JSON
 		resp.setContentType("application/json");
 		resp.getWriter().write(result.toString());
 		resp.getWriter().close();
