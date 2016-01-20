@@ -12,7 +12,7 @@ function onSignIn(googleUser) {
 		console.log("ID Token: " + id_token);
 		
 		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'http://localhost:8888/testconnection');
+		xhr.open('POST', window.location.origin + '/testconnection');
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		xhr.onload = function() {
 		  console.log('Signed in as: ' + xhr.responseText);
@@ -22,7 +22,7 @@ function onSignIn(googleUser) {
 		  var dtExpire = new Date();
 		   dtExpire.setTime(dtExpire.getTime() + 3600 * 1000);
 		   setCookie('token_user', id_token, dtExpire, '/' );
-		   setCookie('name_user', obj.name.replace("%20"," "), dtExpire, '/' );
+		   setCookie('name_user', obj.name, dtExpire, '/' );
 		   setCookie('email_user', obj.email, dtExpire, '/' );
 		   window.location.reload();
 		};

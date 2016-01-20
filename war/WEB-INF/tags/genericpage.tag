@@ -54,7 +54,7 @@
 	    %>
 	    	<a class="btn btn-default" href="#" onclick="signOut();">Sign out</a>
 	    	<div class="alert alert-success" role="alert">
-	    		<%= nameUser.toString() %>
+	    		<%= nameUser.replace("%20", " ") %>
 	    		<%= emailUser.toString() %>
 			</div>
 	    	<div id="btnConnect" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="display: none;"></div>
