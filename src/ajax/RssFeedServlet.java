@@ -81,7 +81,8 @@ public class RssFeedServlet extends HttpServlet {
 						break;
 					case DESCRIPTION:
 						if (counter >= 1) {
-							jsonObject.put(title, tagContent);
+							jsonObject.put(TITLE, title);
+							jsonObject.put(DESCRIPTION, tagContent);
 							jsonArray.put(jsonObject);
 						}
 						counter++;
