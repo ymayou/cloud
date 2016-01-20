@@ -16,14 +16,14 @@
 </head>
 <body>
 
-<form role="form">
+<form role="form" id ="addPlan">
     <div class="row" style="margin-bottom:10px">
         <div class=" col-md-1 col-sm-0 col-xs-0 " ></div>
         <div class=" col-md-2 col-sm-2 col-xs-12 ">
             <label for="inputTitle">Title</label>
         </div>
         <div class=" col-md-6 col-sm-6 col-xs-12 ">
-            <input type="email" class="form-control" id="inputTitle" placeholder="Enter your Training plan title">
+            <input type="text" class="form-control" id="inputTitle" placeholder="Enter your Training plan title">
         </div>
         <div class=" col-md-3 col-sm-4 hidden-xs">
             <div class=" col-md-4 col-sm-4 hidden-xs">
@@ -101,7 +101,6 @@
                         <button id="btnAddExercise" type="button" class="btn btn-success center-block">Add an Exercice</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -124,13 +123,14 @@
     <div class=" col-md-2 ol-sm-0 col-xs-0 " ></div>
     <div class=" col-md-10 ol-sm-5 col-xs-0 " ></div>
     <div class=" col-md-2 ol-sm-5 col-xs-12 text-center" >
-        <button type="submit" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-remove"></span> </button>
-        <button type="submit" class="btn btn-success btn-lg"> <span class="glyphicon glyphicon-ok"></span> </button>
+        <input id="btCancel" type="submit" class="btn btn-danger btn-sm"/>
+        <input id="btSave" type="submit" class="btn btn-success btn-lg"/>
     </div>
 </form>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="/Ressources/js/jquery.validate.min.js"></script>
 <script src ="/Ressources/js/excercise.js"></script>
 </html>

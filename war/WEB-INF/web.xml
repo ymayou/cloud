@@ -30,4 +30,17 @@
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>AddTrainingServlet</servlet-name>
+		<servlet-class>Processing.AddTrainingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddTrainingServlet</servlet-name>
+		<url-pattern>/addPlan</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddTrainingServlet</servlet-name>
+		<url-pattern>/addExercise</url-pattern>
+	</servlet-mapping>
+
 </web-app>
