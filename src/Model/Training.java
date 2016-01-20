@@ -1,5 +1,7 @@
 package Model;
 
+import com.google.appengine.api.datastore.Key;
+
 public class Training {
 
 	public static final String DATASTORE_LABEL = "TRAINING";
@@ -8,6 +10,7 @@ public class Training {
 	public static final String DESCRIPTION_LABEL = "description";
 	public static final String DOMAIN_LABEL = "domain";
 
+	private Key key;
 	private String title;
 	private String description;
 	private String domain;
@@ -16,11 +19,20 @@ public class Training {
 	public Training() {
 	}
 
-	public Training(String title, String description, String domain, String duration) {
+	public Training(Key key, String title, String description, String domain, String duration) {
+		this.key = key;
 		this.title = title;
 		this.description = description;
 		this.domain = domain;
 		this.duration = duration;
+	}
+
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
 	}
 
 	public String getTitle() {
