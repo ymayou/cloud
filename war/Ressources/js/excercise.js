@@ -6,6 +6,9 @@ $(document).ready(function(){
         var time = $("#hour").val() + ":" + $("#minute").val() + ":" + $("#sec").val();
         var inputs = [$("#titleDescription").val(), $("#exerciceDescription").val(), time];
 
+        $("#totalTimeValue").text(updateTime(parseInt($("#hour").val()), parseInt($("#minute").val()), parseInt($("#sec").val())));
+
+
         // clear inputs
         /*$("#titleDescription").val("");
         $("#exerciceDescription").val("");
@@ -20,23 +23,13 @@ $(document).ready(function(){
         }
         var cell = row.insertCell(nbElements);
         cell.innerHTML = '<button type="submit" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-remove"></span> </button>';
-
-        /*$.post("addExercise",
-        {
-            cmd: "addExercise",
-            title: inputs[0],
-            description: inputs[1],
-            time: time,
-        },
-        function(data){
-            console.log(data);
-        });
-        return false;*/
     });
 
     $("#btSave").click(function(){
         var title = $("#inputTitle").val();
         var description = $("#inputDescription").val();
+        var totalTime = $("#totalTimeValue").text();
+        var domain = $("#e1").val();
         var exercises = new Array();
         $("#excerciseTableBody tr").each(function(){
             var data = $(this).find("td");
@@ -47,7 +40,6 @@ $(document).ready(function(){
                 data.each(function(){
                     if (tmp < 3) // We don' want to push the button in the array
                         exercise[tmp] = $(this).text();
-                        //push($(this).text());
                     tmp++;
                 });
                 exercises.push(exercise);
@@ -56,8 +48,7 @@ $(document).ready(function(){
         $.post("addPlan",
         {
             cmd: "addPlan",
-            data: JSON.stringify({"title": title, "description": description, "exercises": exercises}),
-            //time: time,
+            data: JSON.stringify({"title": title, "description": description, "domain": domain, "time": totalTime, "exercises": exercises}),
         },
         function(data){
             console.log(data);
@@ -99,4 +90,26 @@ $(document).ready(function(){
            }
        }
     });
+
+    function updateTime(hour, minute, sec)
+    {
+        var allTime = $("#totalTimeValue").text().split(":");
+        allTime[2] = parseInt(allTime[2])+ sec;
+        allTime[1] = parseInt(allTime[1])+ minute;
+        allTime[0] = parseInt(allTime[0])+ hour;
+
+        if (allTime[2] >= 60)
+        {
+            allTime[2] = allTime[2] - 60;
+            allTime[1] = allTime[1] + 1;
+        }
+        if (allTime[1] >= 60)
+        {
+            allTime[1] = allTime[1] - 60;
+            allTime[0] = allTime[0] + 1;
+        }
+
+        console.log(allTime);
+        return allTime[0] + ":" + allTime[1] + ":" + allTime[2];
+    }
 });

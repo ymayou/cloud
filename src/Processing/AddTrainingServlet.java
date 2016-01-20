@@ -26,8 +26,7 @@ public class AddTrainingServlet extends HttpServlet {
 
         switch (cmd) {
             case "addPlan":
-                DatastoreService datastore = DatastoreServiceFactory
-                        .getDatastoreService();
+                DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
                 String data = request.getParameter("data");
                 Training train = new Training();
                 try {
@@ -36,8 +35,8 @@ public class AddTrainingServlet extends HttpServlet {
 
                     train.setTitle(json.getString("title"));
                     train.setDescription(json.getString("description"));
-                    train.setDomain("...");
-                    train.setDuration("...");
+                    train.setDomain(json.getString("domain"));
+                    train.setDuration(json.getString("time"));
 
                     Entity training = new Entity(Training.DATASTORE_LABEL);
                     training.setProperty(Training.TITLE_LABEL, train.getTitle());
