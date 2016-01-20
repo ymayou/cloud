@@ -11,6 +11,7 @@
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="23620194878-afclr41aopnkhg8s8qp4qmt72oktho8q.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="../../Ressources/js/login.js" ></script>
     
     <title>Bootstrap 101 Template</title>
 
@@ -26,9 +27,6 @@
       </nav>
       <!-- ------------------------------------------- HEADER ZONE END ------------------------------------------- -->
   
-  	<div id="pageheader">
-      <jsp:invoke fragment="header"/>
-    </div>
     <div id="body">
       <jsp:doBody/>
     </div>
