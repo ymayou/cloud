@@ -17,9 +17,7 @@ $(document).ready(function() {
 			$.get("search", {
 				keywords : keywords
 			}, function(data, status) {
-				console.log("Request made");
 				console.log(data);
-				console.log(status);
 				
 				// Display the result section
 				var result = $("#searchResults");
@@ -29,7 +27,20 @@ $(document).ready(function() {
 				training.empty();
 				exercises.empty();
 				for (var i = 0; i < data.length; i++) {
-					// TODO : add the results
+					console.log(data[i]);
+					console.log(data[i].values.length)
+					for (var j = 0; j < data[i].values.length; j++) {
+						var element = data[i].values[j];
+						var link = "<a href=\"/rss\">" + element.title + "</a>";
+						var duration = "<p>" + element.duration + "</p>";
+						if (data[i].type === "training") {
+							training.append(link);
+							training.append(duration);
+						} else {
+							exercises.append(link);
+							exercises.append(duration);
+						}
+					}
 				}
 			});
 		}

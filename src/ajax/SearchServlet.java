@@ -52,11 +52,23 @@ public class SearchServlet extends HttpServlet {
 				.getDatastoreService();
 
 		// Get results
-		JSONObject training = searchTraining(datastore, keywordsList);
-		JSONObject exercises = searchExercices(datastore, keywordsList);
+		JSONArray trainingList = searchTraining(datastore, keywordsList);
+		JSONArray exerciseList = searchExercices(datastore, keywordsList);
 		JSONArray result = new JSONArray();
-		if (training.length() > 0) result.put(training);
-		if (exercises.length() > 0) result.put(exercises);
+		
+		JSONObject training = new JSONObject();
+		JSONObject exercises = new JSONObject();
+		
+		try {
+			training.put("type", "training");
+			training.put("values", trainingList);
+			exercises.put("type", "exercises");
+			exercises.put("values", exerciseList);
+			result.put(training);
+			result.put(exercises);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		
 		// Return JSON
 		resp.setContentType("application/json");
@@ -72,9 +84,10 @@ public class SearchServlet extends HttpServlet {
 	 * @param keywordsList list of keywords
 	 * @return a JSON object
 	 */
-	private JSONObject searchTraining(DatastoreService datastore,
+	private JSONArray searchTraining(DatastoreService datastore,
 			List<String> keywordsList) {
 		JSONObject jsonObject = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
 
 		// Create query, filter on training titles
 		Query queryTrainings = new Query(Training.DATASTORE_LABEL);
@@ -83,18 +96,29 @@ public class SearchServlet extends HttpServlet {
 
 		// Get query result
 		PreparedQuery pqTrainings = datastore.prepare(queryTrainings);
+		
+		// TODO : remove
+		try {
+			jsonObject.put(Training.TITLE_LABEL, "title");
+			jsonObject.put(Training.DURATION_LABEL, "duration");
+			jsonArray.put(jsonObject);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 
 		for (Entity element : pqTrainings.asIterable()) {
 			String title = (String) element.getProperty(Training.TITLE_LABEL);
 			String duration = (String) element.getProperty(Training.DURATION_LABEL);
 			try {
-				jsonObject.put(title, duration);
+				jsonObject.put(Training.TITLE_LABEL, title);
+				jsonObject.put(Training.DURATION_LABEL, duration);
+				jsonArray.put(jsonObject);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		}
 
-		return jsonObject;
+		return jsonArray;
 	}
 
 	/**
@@ -104,8 +128,9 @@ public class SearchServlet extends HttpServlet {
 	 * @param keywordsList list of keywords
 	 * @return a JSON object
 	 */
-	private JSONObject searchExercices(DatastoreService datastore, List<String> keywordsList) {
+	private JSONArray searchExercices(DatastoreService datastore, List<String> keywordsList) {
 		JSONObject jsonObject = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
 
 		// Create query, filter on exercises titles
 		Query queryExercises= new Query(Exercise.DATASTORE_LABEL);
@@ -114,17 +139,28 @@ public class SearchServlet extends HttpServlet {
 
 		// Get query result
 		PreparedQuery pqExercises = datastore.prepare(queryExercises);
+		
+		// TODO : remove
+		try {
+			jsonObject.put(Exercise.TITLE_LABEL, "title");
+			jsonObject.put(Exercise.DURATION_LABEL, "duration");
+			jsonArray.put(jsonObject);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 
 		for (Entity element : pqExercises.asIterable()) {
 			String title = (String) element.getProperty(Exercise.TITLE_LABEL);
 			String duration = (String) element.getProperty(Exercise.DURATION_LABEL);
 			try {
-				jsonObject.put(title, duration);
+				jsonObject.put(Exercise.TITLE_LABEL, title);
+				jsonObject.put(Exercise.DURATION_LABEL, duration);
+				jsonArray.put(jsonObject);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		}
 
-		return jsonObject;
+		return jsonArray;
 	}
 }
