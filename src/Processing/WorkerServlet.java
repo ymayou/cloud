@@ -1,5 +1,6 @@
 package Processing;
 
+import Dao.ExerciseDao;
 import Dao.TrainingDao;
 import Model.Exercise;
 import Model.Training;
@@ -37,16 +38,13 @@ public class WorkerServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // TODO: use the dao to insert data
         TrainingDao trainingDao = new TrainingDao();
+        ExerciseDao exerciseDao = new ExerciseDao();
         Key key = trainingDao.insert(train);
         for (Exercise ex : exerciseList)
         {
-
+            exerciseDao.insertWithKey(ex, key);
         }
-
-        System.out.println("ok");
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

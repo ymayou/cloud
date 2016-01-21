@@ -1,28 +1,25 @@
 package Dao;
 
 import Model.Training;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.taskqueue.Queue;
-import com.google.appengine.api.taskqueue.QueueFactory;
-import com.google.appengine.api.taskqueue.TaskOptions;
 
 /**
  * Created by You on 20/01/2016.
  */
 public class TrainingDao implements CommonDao<Training>{
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     @Override
     public Key insert(Training object) {
-        Queue queue = QueueFactory.getDefaultQueue();
-
-        // Ajout d’une tache simple
-        TaskOptions task = TaskOptions.Builder.withUrl("/worker")
-                .param(Training.TITLE_LABEL, object.getTitle())
-                .param(Training.DESCRIPTION_LABEL, object.getDescription())
-                .param(Training.DOMAIN_LABEL, object.getDomain())
-                .param(Training.DURATION_LABEL, object.getDuration());
-        queue.add(task);
-        return null;
+        Entity entity = new Entity(Training.DATASTORE_LABEL);
+        entity.setProperty(Training.TITLE_LABEL, object.getTitle());
+        entity.setProperty(Training.DESCRIPTION_LABEL, object.getDescription());
+        entity.setProperty(Training.DOMAIN_LABEL, object.getDomain());
+        entity.setProperty(Training.DURATION_LABEL, object.getDuration());
+        return datastore.put(entity);
     }
 
     @Override
