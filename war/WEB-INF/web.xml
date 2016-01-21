@@ -69,5 +69,14 @@
 		<servlet-name>WorkerServlet</servlet-name>
 		<url-pattern>/worker</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SetResultServlet</servlet-name>
+		<servlet-class>Processing.SetResultServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SetResultServlet</servlet-name>
+		<url-pattern>/personaldata</url-pattern>
+	</servlet-mapping>
 	
 </web-app>
