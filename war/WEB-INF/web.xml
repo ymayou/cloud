@@ -40,6 +40,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>DetailTrainingServlet</servlet-name>
+		<servlet-class>ajax.DetailTrainingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DetailTrainingServlet</servlet-name>
+		<url-pattern>/detailtraining</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>TestConnectionServlet</servlet-name>
 		<servlet-class>ajax.TestConnectionServlet</servlet-class>
 	</servlet>
@@ -78,5 +87,5 @@
 		<servlet-name>SetResultServlet</servlet-name>
 		<url-pattern>/personaldata</url-pattern>
 	</servlet-mapping>
-	
+
 </web-app>

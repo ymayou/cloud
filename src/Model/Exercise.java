@@ -10,7 +10,8 @@ public class Exercise implements Serializable{
 	public static final String TITLE_LABEL = "title";
 	public static final String DURATION_LABEL = "duration";
 	public static final String DESCRIPTION_LABEL = "description";
-
+	public static final String KEY_LABEL = "Key";
+	
 	private String title;
 	private String duration;
 	private String description;

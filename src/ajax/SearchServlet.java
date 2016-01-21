@@ -114,7 +114,7 @@ public class SearchServlet extends HttpServlet {
 		for (Entity element : pqTrainings.asIterable()) {
 			String title = (String) element.getProperty(Training.TITLE_LABEL);
 			String duration = (String) element.getProperty(Training.DURATION_LABEL);
-			String key = element.getKey().toString(); 
+			String key = String.valueOf(element.getKey().getId());
 			try {
 				jsonObject.put(Training.TITLE_LABEL, title);
 				jsonObject.put(Training.DURATION_LABEL, duration);
@@ -150,7 +150,7 @@ public class SearchServlet extends HttpServlet {
 		for (Entity element : pqExercises.asIterable()) {
 			String title = (String) element.getProperty(Exercise.TITLE_LABEL);
 			String duration = (String) element.getProperty(Exercise.DURATION_LABEL);
-			String key = element.getParent().toString(); 
+			String key = String.valueOf(element.getKey().getId());
 			try {
 				jsonObject.put(Exercise.TITLE_LABEL, title);
 				jsonObject.put(Exercise.DURATION_LABEL, duration);
