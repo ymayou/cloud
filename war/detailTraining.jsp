@@ -83,7 +83,15 @@
 				    ArrayList<Exercise> listProf = new ArrayList();
 				    listProf = (ArrayList<Exercise>) request.getAttribute("listExercise");
 				    
+				    int i = 0;
+				    String cmd;
 					    for(Exercise e : listProf){
+					    	if(i>0){
+					    		cmd = "insert";
+					    	} else {
+					    		cmd = "update";
+					    	}
+					    	i++;
 		    	%>
 		    				<tr>
 		                        <td class=" col-md-12 col-sm-12 col-xs-12">
@@ -117,7 +125,7 @@
 		                            </div>
 		                        </div>
 		                            <div class=" col-md-2 ol-sm-5 col-xs-12 text-center" >
-		                                <button type="submit" class="btn btn-success btn-lg okExercice" data-result="false" data-idTraining="${idTraining}"> <span class="glyphicon glyphicon-ok"></span> </button>    
+		                                <button type="submit" class="btn btn-success btn-lg okExercice" data-cmd="<% out.print(cmd); %>" data-result="false" data-idTraining="${idTraining}"> <span class="glyphicon glyphicon-ok"></span> </button>    
 		                                <button type="submit" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-fast-forward"></span> </button>
 		                            </div>
 		                            
@@ -153,11 +161,13 @@
     	$( ".okExercice" ).click(function() {
     		var idTraining = $(this).data("idTraining");
     		var result = $(this).data("result");
-    		
+    		var commande = $(this).data("cmd");
     		$.post("/personaldata",
 			    {
     			    id: idTraining,
-			        res: result
+			        res: result,
+			        cmd: commande,
+			        time: "0:0:0"
 			    },
 			    function(data, status){
 			        alert('ok');
