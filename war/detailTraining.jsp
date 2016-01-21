@@ -159,13 +159,13 @@
     
     $(document).ready(function(){
     	$( ".okExercice" ).click(function() {
-    		var idTraining = $(this).data("idTraining");
+    		var idTraining = $(this).data("idtraining");
     		var result = $(this).data("result");
     		var commande = $(this).data("cmd");
     		$.post("/personaldata",
 			    {
-    			    id: idTraining,
-			        res: result,
+    			    training: idTraining,
+			        status: result,
 			        cmd: commande,
 			        time: "0:0:0"
 			    },
