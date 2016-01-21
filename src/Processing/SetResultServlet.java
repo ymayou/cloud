@@ -1,6 +1,7 @@
 package Processing;
 
 import Model.PersonalData;
+import Model.Training;
 import com.google.appengine.api.datastore.KeyFactory;
 
 import javax.servlet.ServletException;
@@ -30,7 +31,8 @@ public class SetResultServlet extends HttpServlet {
                 }
                 PersonalData perso = new PersonalData();
                 perso.setId(cookie.getValue());
-                perso.setTraining(KeyFactory.stringToKey(request.getParameter(PersonalData.TRAINING_LABEL)));
+
+                perso.setTraining(KeyFactory.createKey(Training.DATASTORE_LABEL, Long.parseLong(request.getParameter(PersonalData.TRAINING_LABEL))));
                 Date now = new Date();
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 perso.setDate(format.format(now));
