@@ -96,7 +96,7 @@ public class SearchDomainsServlet extends HttpServlet {
 
 		// Create query, filter on training domain
 		Query queryTrainings = new Query(Training.DATASTORE_LABEL);
-		Filter trainingsFilter = new FilterPredicate(Training.DOMAIN_LABEL, FilterOperator.EQUAL, domain);
+		Filter trainingsFilter = new FilterPredicate("description", FilterOperator.EQUAL, "Plan de test");
 		queryTrainings.setFilter(trainingsFilter);
 
 		// Get query result
