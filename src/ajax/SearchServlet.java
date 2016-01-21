@@ -30,6 +30,7 @@ public class SearchServlet extends HttpServlet {
 	private static final String KEYWORDS_PARAMETER = "keywords";
 	private static final String TOKEN_PARAMETER = "token";
 	private static final String SEPARATOR = ",";
+	private static final String KEY = "key";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -109,22 +110,15 @@ public class SearchServlet extends HttpServlet {
 
 		// Get query result
 		PreparedQuery pqTrainings = datastore.prepare(queryTrainings);
-		
-		// TODO : remove
-		try {
-			jsonObject.put(Training.TITLE_LABEL, "title");
-			jsonObject.put(Training.DURATION_LABEL, "duration");
-			jsonArray.put(jsonObject);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
 
 		for (Entity element : pqTrainings.asIterable()) {
 			String title = (String) element.getProperty(Training.TITLE_LABEL);
 			String duration = (String) element.getProperty(Training.DURATION_LABEL);
+			String key = element.getKey().toString(); 
 			try {
 				jsonObject.put(Training.TITLE_LABEL, title);
 				jsonObject.put(Training.DURATION_LABEL, duration);
+				jsonObject.put(KEY, key);
 				jsonArray.put(jsonObject);
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -152,22 +146,15 @@ public class SearchServlet extends HttpServlet {
 
 		// Get query result
 		PreparedQuery pqExercises = datastore.prepare(queryExercises);
-		
-		// TODO : remove
-		try {
-			jsonObject.put(Exercise.TITLE_LABEL, "title");
-			jsonObject.put(Exercise.DURATION_LABEL, "duration");
-			jsonArray.put(jsonObject);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
 
 		for (Entity element : pqExercises.asIterable()) {
 			String title = (String) element.getProperty(Exercise.TITLE_LABEL);
 			String duration = (String) element.getProperty(Exercise.DURATION_LABEL);
+			String key = element.getKey().toString(); 
 			try {
 				jsonObject.put(Exercise.TITLE_LABEL, title);
 				jsonObject.put(Exercise.DURATION_LABEL, duration);
+				jsonObject.put(KEY, key);
 				jsonArray.put(jsonObject);
 			} catch (JSONException e) {
 				e.printStackTrace();

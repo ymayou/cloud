@@ -75,10 +75,18 @@ function getResults(token) {
 		training.empty();
 		exercises.empty();
 		for (var i = 0; i < data.length; i++) {
-
+			if (data[i].type === "training" && data[i].values.length == 0) {
+				$("#trainingTitle").addClass("hidden");
+			}
+			
+			if (data[i].type === "exercises" && data[i].values.length == 0) {
+				$("#exercisesTitle	").addClass("hidden");
+			}
+			
 			for (var j = 0; j < data[i].values.length; j++) {
 				var element = data[i].values[j];
-				var link = "<a href=\"/rss\">" + element.title + "</a>";
+				var link = "<a href=\"/detailtraining?training=" + element.key + "\">" + element.title + "</a>";
+				console.log(link);
 				var duration = "<p>" + element.duration + "</p>";
 				if (data[i].type === "training") {
 					training.append(link);

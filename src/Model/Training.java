@@ -9,6 +9,7 @@ public class Training {
 	public static final String DURATION_LABEL = "duration";
 	public static final String DESCRIPTION_LABEL = "description";
 	public static final String DOMAIN_LABEL = "domain";
+	public static final String EXERCISES_LABEL = "exercises";
 
 	private Key key;
 	private String title;
