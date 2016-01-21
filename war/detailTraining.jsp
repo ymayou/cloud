@@ -86,7 +86,7 @@
 				    int i = 0;
 				    String cmd;
 					    for(Exercise e : listProf){
-					    	if(i>0){
+					    	if(i == 0){
 					    		cmd = "insert";
 					    	} else {
 					    		cmd = "update";
