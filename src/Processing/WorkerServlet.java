@@ -1,8 +1,10 @@
 package Processing;
 
+import Dao.TrainingDao;
 import Model.Exercise;
 import Model.Training;
-import com.google.appengine.repackaged.com.google.api.client.util.Base64;
+import com.google.appengine.api.datastore.Key;
+import org.apache.commons.codec.binary.Base64;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +38,12 @@ public class WorkerServlet extends HttpServlet {
         }
 
         // TODO: use the dao to insert data
+        TrainingDao trainingDao = new TrainingDao();
+        Key key = trainingDao.insert(train);
+        for (Exercise ex : exerciseList)
+        {
+
+        }
 
         System.out.println("ok");
 

@@ -3,17 +3,13 @@ package Processing;
 
 import Model.Exercise;
 import Model.Training;
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.labs.repackaged.org.json.JSONArray;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
-import com.google.appengine.repackaged.com.google.api.client.util.Base64;
+import org.apache.commons.codec.binary.Base64;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
