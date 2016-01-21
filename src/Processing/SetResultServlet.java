@@ -34,6 +34,7 @@ public class SetResultServlet extends HttpServlet {
                 Date now = new Date();
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 perso.setDate(format.format(now));
+                perso.setTime(request.getParameter(PersonalData.TIME_LABEL));
                 break;
             case "update":
                 break;

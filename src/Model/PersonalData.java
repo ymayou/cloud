@@ -11,6 +11,7 @@ public class PersonalData {
     public static final String DATE_LABEL = "date";
     public static final String TRAINING_LABEL = "training";
     public static final String STATUS_LABEL = "status";
+    public static final String TIME_LABEL = "time";
 
     public static final boolean SUCCESS  = true;
     public static final boolean FAILURE = false;
@@ -20,11 +21,12 @@ public class PersonalData {
     private String date;
     private Key trainingKey;
     private boolean status;
+    private String time;
 
     public PersonalData() {
     }
 
-    public PersonalData(Key key, String id, String date, Key trainingKey, boolean status) {
+    public PersonalData(Key key, String id, String date, Key trainingKey, boolean status, String time) {
         this.key = key;
         this.id = id;
         this.date = date;
@@ -60,7 +62,7 @@ public class PersonalData {
         return trainingKey;
     }
 
-    public void setTraining(Key training) {
+    public void setTraining(Key trainingKey) {
         this.trainingKey = trainingKey;
     }
 
@@ -70,5 +72,13 @@ public class PersonalData {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
