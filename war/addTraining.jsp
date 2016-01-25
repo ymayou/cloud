@@ -79,11 +79,11 @@
                             </div>
                             <div class=" col-md-6 col-sm-6 col-xs-12 ">
                                 <div class="input-group">
-                                    <input id="hour" type="number" min="0" step="1" max="60" class="form-control"/>
+                                    <input id="hour" type="number" min="0" step="1" max="60" class="form-control" placeholder="hour"/>
                                     <span class="input-group-addon" style="padding:0px">:</span>
-                                    <input id="minute" type="number" min="0" step="1" max="60" class="form-control"/>
+                                    <input id="minute" type="number" min="0" step="1" max="60" class="form-control" placeholder="min"/>
                                     <span class="input-group-addon" style="padding:0px">:</span>
-                                    <input id="sec" type="number" min="0" step="1" max="60" class="form-control"/>
+                                    <input id="sec" type="number" min="0" step="1" max="60" class="form-control" placeholder="sec"/>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 package Processing;
 
+import Dao.PersonalDataDao;
 import Model.PersonalData;
 import Model.Training;
 import com.google.appengine.api.datastore.KeyFactory;
@@ -37,6 +38,10 @@ public class SetResultServlet extends HttpServlet {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 perso.setDate(format.format(now));
                 perso.setTime(request.getParameter(PersonalData.TIME_LABEL));
+                perso.setStatus(Boolean.valueOf(request.getParameter(PersonalData.STATUS_LABEL)));
+
+                PersonalDataDao personalDataDao = new PersonalDataDao();
+                personalDataDao.insert(perso);
                 break;
             case "update":
                 break;

@@ -13,9 +13,6 @@ public class PersonalData {
     public static final String STATUS_LABEL = "status";
     public static final String TIME_LABEL = "time";
 
-    public static final boolean SUCCESS  = true;
-    public static final boolean FAILURE = false;
-
     private Key key;
     private String id;
     private String date;
