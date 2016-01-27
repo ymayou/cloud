@@ -75,7 +75,7 @@
       <jsp:doBody/>
     </div>
     <div id="pagefooter">
-      <jsp:invoke fragment="footer"/>
+		<jsp:invoke fragment="footer"/>
     </div>
   </body>
 </html>

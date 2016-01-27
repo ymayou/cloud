@@ -7,9 +7,10 @@
     <jsp:attribute name="footer">
     </jsp:attribute>
     <jsp:body>
-
         <form role="form" id ="addPlan">
             <div class="row" style="margin-bottom:10px">
+                <div id="error" style="text-align: center">
+                </div>
                 <div class=" col-md-1 col-sm-0 col-xs-0 " ></div>
                 <div class=" col-md-2 col-sm-2 col-xs-12 ">
                     <label for="inputTitle">Title</label>

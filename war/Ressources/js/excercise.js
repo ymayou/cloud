@@ -49,10 +49,20 @@ $(document).ready(function(){
         {
             cmd: "addPlan",
             data: JSON.stringify({"title": title, "description": description, "domain": domain, "time": totalTime, "exercises": exercises}),
-        },
-        function(data){
-            console.log(data);
-        });
+        })
+            .fail(function()
+            {
+                if (!$("#error").hasClass("alert"))
+                {
+                    $("#error").addClass("alert alert-danger");
+                    $("#error").append("<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> <span class='sr-only'>Error:</span>You must be logged in to add an element!");
+                }
+
+            })
+            .done(function(){
+                location.reload();
+            })
+        return false;
     });
 
     $("#btCancel").click(function(){
