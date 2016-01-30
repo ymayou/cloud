@@ -3,6 +3,15 @@
 
 <t:genericpage>
     <jsp:attribute name="header">
+        <span style="color: white">
+            <h1>
+                <a href="/index">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true">
+                    </span>
+                </a>
+                Personal Data
+            </h1>
+        </span>
     </jsp:attribute>
     <jsp:attribute name="footer">
     </jsp:attribute>
