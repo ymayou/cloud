@@ -11,5 +11,5 @@ public interface CommonDao<T> {
     public void delete(Key key);
     public Key update(T object);
     public Entity selectAll();
-    public Entity select(Key key);
+    public T select(Key key);
 }

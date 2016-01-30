@@ -11,6 +11,7 @@ import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
 import org.apache.commons.codec.binary.Base64;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -109,6 +110,7 @@ public class AddTrainingServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/addTraining.jsp");
+        rd.forward(request, response);
     }
 }

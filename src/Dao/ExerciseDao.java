@@ -45,7 +45,7 @@ public class ExerciseDao implements CommonDao<Exercise> {
     }
 
     @Override
-    public Entity select(Key key) {
+    public Exercise select(Key key) {
         return null;
     }
 
