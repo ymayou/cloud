@@ -15,7 +15,7 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="../../Ressources/js/login.js" ></script>
     
-    <title>Bootstrap 101 Template</title>
+    <title>Personal Trainer</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
