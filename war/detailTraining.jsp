@@ -85,11 +85,14 @@
 				    
 				    int i = 0;
 				    String cmd;
+				    String enableButton;
 					    for(Exercise e : listProf){
 					    	if(i == 0){
 					    		cmd = "insert";
+					    		enableButton = "";
 					    	} else {
 					    		cmd = "update";
+					    		enableButton = "disabled";
 					    	}
 					    	i++;
 		    	%>
@@ -125,7 +128,7 @@
 		                            </div>
 		                        </div>
 		                            <div class=" col-md-2 ol-sm-5 col-xs-12 text-center" >
-		                                <button type="submit" class="btn btn-success btn-lg okExercice" data-cmd="<% out.print(cmd); %>" data-result="false" data-idTraining="${idTraining}"> <span class="glyphicon glyphicon-ok"></span> </button>    
+		                                <button id="okExercice<% out.print(i); %>" data-idb="<% out.print(i); %>" type="submit" class="btn btn-success btn-lg okExercice" data-cmd="<% out.print(cmd); %>" data-result="false" data-idTraining="${idTraining}" <% out.print(enableButton); %>> <span class="glyphicon glyphicon-ok"></span> </button>    
 		                                <button type="submit" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-fast-forward"></span> </button>
 		                            </div>
 		                            
@@ -159,6 +162,9 @@
     
     $(document).ready(function(){
     	$( ".okExercice" ).click(function() {
+    		var idButton = "okExercice" + ($(this).data("idb") + 1);
+    		$(this).prop('disabled', true);
+    		$("#" + idButton).prop('disabled', false);
     		var idTraining = $(this).data("idtraining");
     		var result = $(this).data("result");
     		var commande = $(this).data("cmd");
@@ -171,8 +177,8 @@
 			    },
 			    function(data, status){
 			        alert('ok');
+			        
 			    });
-   			alert( "Handler for .click() called." );
    		});
     });
     
