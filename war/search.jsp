@@ -23,7 +23,7 @@
       <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
         <div class=" col-md-10 col-sm-10 col-xs-10 ">
             <form class="navbar-form navbar-left"  style="width:100%" role="search">
-                <a href="/addTraining.jsp" type="submit" class="btn btn-danger"> <span class="glyphicon glyphicon-plus-sign"></span> </a>
+                <a href="/addPlan" type="submit" class="btn btn-danger"> <span class="glyphicon glyphicon-plus-sign"></span> </a>
                <label style="color:white">Add a Training Plan</label>
           </form>
         </div>

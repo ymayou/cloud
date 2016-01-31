@@ -52,6 +52,7 @@
 		
 	        if (foundCookie) {
 	    %>
+		 	<a href="/results">My results</a>
 	    	<a class="btn btn-default" href="#" onclick="signOut();">Sign out</a>
 	    	<div class="alert alert-success" role="alert">
 	    		<%= nameUser.replace("%20", " ") %>
