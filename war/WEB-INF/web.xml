@@ -5,7 +5,7 @@
 
 	<servlet>
 		<servlet-name>search_servlet</servlet-name>
-		<servlet-class>ajax.SearchServlet</servlet-class>
+		<servlet-class>Processing.SearchServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>search_servlet</servlet-name>
@@ -14,7 +14,7 @@
 
 	<servlet>
 		<servlet-name>search_domain_servlet</servlet-name>
-		<servlet-class>ajax.SearchDomainsServlet</servlet-class>
+		<servlet-class>Processing.SearchDomainsServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>search_domain_servlet</servlet-name>
@@ -23,7 +23,7 @@
 
 	<servlet>
 		<servlet-name>rss_servlet</servlet-name>
-		<servlet-class>ajax.RssFeedServlet</servlet-class>
+		<servlet-class>Processing.RssFeedServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>rss_servlet</servlet-name>
@@ -45,7 +45,7 @@
 
 	<servlet>
 		<servlet-name>DetailTrainingServlet</servlet-name>
-		<servlet-class>ajax.DetailTrainingServlet</servlet-class>
+		<servlet-class>Processing.DetailTrainingServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DetailTrainingServlet</servlet-name>
@@ -54,7 +54,7 @@
 
 	<servlet>
 		<servlet-name>TestConnectionServlet</servlet-name>
-		<servlet-class>ajax.TestConnectionServlet</servlet-class>
+		<servlet-class>Processing.TestConnectionServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TestConnectionServlet</servlet-name>
@@ -99,4 +99,15 @@
 		<servlet-name>ResultServlet</servlet-name>
 		<url-pattern>/results</url-pattern>
 	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>ChatServlet</servlet-name>
+		<servlet-class>Processing.ChatServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChatServlet</servlet-name>
+		<url-pattern>/token</url-pattern>
+	</servlet-mapping>
+
 </web-app>

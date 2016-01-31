@@ -20,6 +20,10 @@ Questions non réalisées :
 Commentaires :
     Nous avons essayés de mettre en place un contrôle des formulaires avec JQuery Validate,
     par manque de temps nous n'avons pas eu le temps de l'intégrer correctement dans tous les formulaires.
+    
+    Le chat a été implémenté sous la forme d'un chat général (tous les utilisateurs peuvent s'y connecter et voit l'ensemble des messages).
+    Cela a éviter de passer trop de temps sur la partie HTML et JavaScript pour se concentrer sur le reste.
+    L'App Cache est bien utilisé pour l'historique des messages et permet de savoir si un client peut effectivement accéder au chat (chaque client connecté est listé dans l'App Cache).
 
     Au niveau de la gestion des données, on a séparé les accès en base de données des servlets.
     Les class DAO incluent la même interface générique pour avoir les mêmes fonctionnalités de base même si certaines retournent null car nous ne les utilisont pas.
