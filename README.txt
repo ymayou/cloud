@@ -32,4 +32,4 @@ Commentaires :
     Au niveau de la base de données :
         - TRAINING contient les plans d'entrainements
         - EXERCISE contient les exercices. EXERCISE est enfant de TRAINING
-        - PERSONALDATA contient les résultats des plans d'entrainements. PERSONALDATA est enfant de TRAINING et contient l'adresse email de l'utilsiateur (car elle est unique chez Google)
+        - PERSONALDATA contient les résultats des plans d'entrainements. PERSONALDATA est enfant de TRAINING et contient l'adresse email de l'utilisateur (car elle est unique chez Google)
