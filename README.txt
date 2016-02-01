@@ -3,6 +3,8 @@ Membres du groupe :
     Teddy Gustiaux
     Yacine Mayou
 
+URL du projet : https://cpe-cloud-project.appspot.com/
+
 Tâches par personne :
     Accueil, connexion : Florian
     Plan d'entrainement, exercices : Yacine
